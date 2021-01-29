@@ -6,7 +6,7 @@
     state: present
 
 - name: Install opendistroforelasticsearch_package
-  yum:
+  ansible.builtin.yum:
     name: "{{ opendistroforelasticsearch_package }}"
     state: latest
     version: "{{ opendistroforelasticsearch_version }}"
