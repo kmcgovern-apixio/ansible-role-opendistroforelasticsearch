@@ -72,6 +72,7 @@
   shell: "{{ opendistroforelasticsearch_plugin_command }} list"
   environment:
     JAVA_HOME: "{{ opendistroforelasticsearch_java_home }}"
+    ES_PATH_CONF: "{{ opendistroforelasticsearch_conf_dir }}"
   register: shell_output
   changed_when: False
 
@@ -87,6 +88,7 @@
   command: "{{ opendistroforelasticsearch_plugin_command }} install --batch {% if 'src' in item %}{{ item.src }}{% else %}{{ item.name }}{% endif %}"
   environment:
     JAVA_HOME: "{{ opendistroforelasticsearch_java_home }}"
+    ES_PATH_CONF: "{{ opendistroforelasticsearch_conf_dir }}"
   with_items: "{{ opendistroforelasticsearch_plugins }}"
   when:
     - "(not 'state' in item ) or (item['state'] == 'present')"
